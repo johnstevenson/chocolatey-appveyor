@@ -2,7 +2,7 @@ build: false
 shallow_clone: true
 platform:
   - x86
-  - x64
+#  - x64
 
 cache:
   - C:\tools\php -> appveyor.yml
@@ -14,7 +14,7 @@ init:
 
 install:
   - IF EXIST c:\tools\php\composer (SET COMPOSER=1)
-  - IF %COMPOSER%==0 cinst -y composer -ia /DEV=C:\tools\php
+  - IF %COMPOSER%==0 cinst -y composer -version 4.6.0 -ia /DEV=C:\tools\php
   - IF %COMPOSER%==1 composer self-update 
   - cd %APPVEYOR_BUILD_FOLDER%
   - composer install --prefer-dist --no-progress
