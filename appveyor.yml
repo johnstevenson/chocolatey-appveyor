@@ -14,8 +14,8 @@ init:
 install:
   - IF EXIST c:\tools\php (SET PHP=1)
   - IF %PHP%==0 cinst -y php -i && cinst -y composer -i --version 4.6.0 --ia /DEV=C:\tools\php
-  - IF %PHP%==1 php -v
-  - IF %PHP%==1 composer self-update 
+  - php -v
+  - IF %PHP%==1 (composer self-update) ELSE (composer --version) 
   - cd %APPVEYOR_BUILD_FOLDER%
   - composer install --prefer-dist --no-progress
 
