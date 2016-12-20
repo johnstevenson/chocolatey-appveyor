@@ -1,6 +1,5 @@
 build: false
 shallow_clone: true
-image: WMF 5
 platform:
   - x64
 
