@@ -3,7 +3,6 @@ shallow_clone: true
 platform:
   - x86
 #  - x64
-clone_folder: C:\projects\chocolatey-appveyor
 
 cache:
   - C:\tools\php -> appveyor.yml
@@ -11,15 +10,15 @@ cache:
 init:
   - SET PATH=C:\tools\php;%PATH%
   - SET COMPOSER_NO_INTERACTION=1
-  - SET COMPOSER=0
+  - SET PHP=0
 
 install:
-  - IF EXIST c:\tools\php\composer (SET COMPOSER=1)
-  - IF %COMPOSER%==0 cinst -y php -i && cinst -y composer -i --version 4.6.0 -ia /DEV=C:\tools\php
-  - IF %COMPOSER%==1 composer self-update 
-  - cd C:\projects\chocolatey-appveyor
+  - IF EXIST c:\tools\php (SET PHP=1)
+  - IF %PHP%==0 cinst -y php -i && cinst -y composer -i --version 4.6.0 -ia /DEV=C:\tools\php
+  - IF %PHP%==1 composer self-update 
+  - cd %APPVEYOR_BUILD_FOLDER%
   - composer install --prefer-dist --no-progress
 
 test_script:
-  - cd C:\projects\chocolatey-appveyor
+  - cd %APPVEYOR_BUILD_FOLDER%
   - php test.php
