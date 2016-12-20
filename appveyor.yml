@@ -1,7 +1,7 @@
 build: false
 shallow_clone: true
+image: WMF 5
 platform:
-  - x86
   - x64
 
 cache:
