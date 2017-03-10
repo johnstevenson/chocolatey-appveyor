@@ -10,12 +10,13 @@ init:
   - SET PATH=C:\tools\php;%PATH%
   - SET COMPOSER_NO_INTERACTION=1
   - SET PHP=0
+  - SET PHPZIP=php-7.1.2-nts-Win32-VC14-x64.zip
 
 install:
   - IF EXIST C:\tools\php (SET PHP=1) 
   - IF %PHP%==0 mkdir C:\tools\php && cd C:\tools\php
-  - IF %PHP%==0 appveyor DownloadFile http://windows.php.net/downloads/releases/php-7.1.2-nts-Win32-VC14-x64.zip
-  - IF %PHP%==0 7z x php-7.1.2-nts-Win32-VC14-x64.zip -y >nul && del /Q *.zip
+  - IF %PHP%==0 appveyor DownloadFile http://windows.php.net/downloads/releases/%PHPZIP%
+  - IF %PHP%==0 7z x %PHPZIP% -y >nul && del /Q *.zip
   - IF %PHP%==0 cinst -y composer -i --version 4.6.0 --ia /DEV=C:\tools\php
   - php -v
   - IF %PHP%==1 (composer self-update) ELSE (composer --version) 
