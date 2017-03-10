@@ -8,7 +8,7 @@ environment:
     PHP_ZIP: php-7.1.2-nts-Win32-VC14-x64.zip
     
 cache:
-  - %PHP_CACHE_DIR% -> appveyor.yml
+  - '%PHP_CACHE_DIR% -> appveyor.yml'
 
 init:
   - SET PATH=%PHP_CACHE_DIR%;%PATH%
