@@ -5,7 +5,7 @@ platform:
 
 environment:
     PHP_CACHE_DIR: C:\tools\php
-    PHP_ZIP: php-7.1.2-nts-Win32-VC14-x64.zip
+    PHP_ZIP: php-7.1.7-nts-Win32-VC14-x64.zip
     
 cache:
   - '%PHP_CACHE_DIR% -> appveyor.yml'
@@ -20,7 +20,7 @@ install:
   - IF %PHP%==0 mkdir %PHP_CACHE_DIR% && cd %PHP_CACHE_DIR%
   - IF %PHP%==0 appveyor DownloadFile http://windows.php.net/downloads/releases/%PHP_ZIP%
   - IF %PHP%==0 7z x %PHP_ZIP% -y >nul && del /Q *.zip
-  - IF %PHP%==0 cinst -y composer -i --version 4.6.0 --ia /DEV=%PHP_CACHE_DIR%
+  - IF %PHP%==0 cinst -y composer -i --ia /DEV=%PHP_CACHE_DIR%
   - php -v
   - IF %PHP%==1 (composer self-update) ELSE (composer --version) 
   - cd %APPVEYOR_BUILD_FOLDER%
