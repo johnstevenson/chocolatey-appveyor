@@ -1,29 +1,30 @@
 build: false
-shallow_clone: true
-platform:
-  - x64
+clone_depth: 5
 
 environment:
-    PHP_CACHE_DIR: C:\tools\php
-    PHP_DOWNLOAD_URL: http://windows.php.net/downloads/releases/archives
-    PHP_ZIP: php-7.1.11-nts-Win32-VC14-x64.zip
+  # Change this to set the PHP package from Chocolatey
+  PHPCI_CHOCO_VERSION: 7.2.9
+  PHPCI_CACHE: C:\tools\phpci
+  PHPCI_PHP: C:\tools\phpci\php
+  PHPCI_COMPOSER: C:\tools\phpci\composer
 
 cache:
-  - '%PHP_CACHE_DIR% -> appveyor.yml'
+  - '%PHPCI_CACHE% -> appveyor.yml'
 
 init:
-  - SET PATH=%PHP_CACHE_DIR%;%PATH%
+  - SET PATH=%PHPCI_PHP%;%PHPCI_COMPOSER%;%PATH%
+  - SET COMPOSER_HOME=%PHPCI_COMPOSER%\home
+  - SET COMPOSER_CACHE_DIR=%PHPCI_COMPOSER%\cache
   - SET COMPOSER_NO_INTERACTION=1
   - SET PHP=0
+  - SET ANSICON=121x90 (121x90)
 
 install:
-  - IF EXIST %PHP_CACHE_DIR% (SET PHP=1)
-  - IF %PHP%==0 mkdir %PHP_CACHE_DIR% && cd %PHP_CACHE_DIR%
-  - IF %PHP%==0 appveyor DownloadFile %PHP_DOWNLOAD_URL%/%PHP_ZIP%
-  - IF %PHP%==0 7z x %PHP_ZIP% -y >nul && del /Q *.zip
-  - IF %PHP%==0 cinst -y composer -i --ia /DEV=%PHP_CACHE_DIR%
+  - IF EXIST %PHPCI_CACHE% (SET PHP=1)
+  - IF %PHP%==0 cinst php -i -y --version %PHPCI_CHOCO_VERSION%  --params "/InstallDir:%PHPCI_PHP%"
+  - IF %PHP%==0 cinst composer -i -y --ia "/DEV=%PHPCI_COMPOSER%"
   - php -v
-  - IF %PHP%==1 (composer self-update) ELSE (composer --version)
+  - IF %PHP%==0 (composer --version) ELSE (composer self-update)
   - cd %APPVEYOR_BUILD_FOLDER%
   - composer install --prefer-dist --no-progress
 
