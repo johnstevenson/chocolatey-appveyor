@@ -24,7 +24,19 @@ class App
         $this->output('composer data dir', exec('composer config data-dir'));
         $this->output('composer cache dir', exec('composer config cache-dir'), true);
 
-        $this->output('APPVEYOR_BUILD_FOLDER', getenv('APPVEYOR_BUILD_FOLDER'), true);
+        if (PHP_VERSION_ID >= 70100) {
+            $env = getenv();
+        } else {
+            $env = array('APPVEYOR_BUILD_FOLDER' => getenv('APPVEYOR_BUILD_FOLDER'));
+        }
+
+        foreach (getenv() as $name => $value) {
+            if (stripos($name, 'APPVEYOR') === 0) {
+                $this->output($name, $value);
+            }
+        }
+
+        echo PHP_EOL;
     }
 
     private function output($name, $value, $break = false)
