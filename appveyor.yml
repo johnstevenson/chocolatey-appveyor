@@ -24,9 +24,9 @@ install:
   - IF %PHP%==0 cinst php -i -y --version %PHPCI_CHOCO_VERSION%  --params "/InstallDir:%PHPCI_PHP%"
   - IF %PHP%==0 cinst composer -i -y --ia "/DEV=%PHPCI_COMPOSER%"
   - php -v
-  - IF %PHP%==0 (composer --version -vvv) ELSE (composer self-update -vvv)
+  - IF %PHP%==0 (composer --version) ELSE (composer self-update)
   - cd %APPVEYOR_BUILD_FOLDER%
-  - composer install --ansi --prefer-dist --optimize-autoloader --no-suggest --no-progress -vvv
+  - composer install --ansi --prefer-dist --optimize-autoloader --no-suggest --no-progress
 
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
