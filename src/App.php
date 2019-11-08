@@ -16,7 +16,7 @@ class App
         }
 
         $this->output('PHP binary', $binary, true);
-
+        return;
         $this->output(null, exec('composer --version'));
         $this->output('composer.phar', exec('where composer.phar'), true);
 
