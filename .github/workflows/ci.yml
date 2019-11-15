@@ -5,26 +5,20 @@ on: [push]
 jobs:
   tests:
     runs-on: windows-latest
-    env:
-      COMPOSER_BINARY: C:\tools\composer\composer.bat
     steps:
 
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Install Composer
-        run: cinst composer -i -y --% --ia /DEV=C:\tools\composer
+      - name: Setup PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: '7.3'
+          extension-csv: mbstring, openssl, curl
 
-      - name: Update environment
-        run: refreshenv
-
-      - name: Check environment 2
-        run: |
-          refreshenv
-          echo $env:Path
-
-      - name: Check PHP version
+      - name: Check PHP Version
         run: php -v
-
-      - name: Check Composer version
-        run: .$env:COMPOSER_BINARY --version
+      - name: Check Composer Version
+        run: composer -V
+      - name: Check PHP Extensions
+        run: php -m
