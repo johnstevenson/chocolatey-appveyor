@@ -5,9 +5,10 @@ on: [push]
 jobs:
   tests:
     runs-on: windows-latest
+    env:
+      COMPOSER_BINARY: C:\tools\composer
     steps:
-      env:
-        COMPOSER_BINARY: C:\tools\composer
+
       - name: Checkout
         uses: actions/checkout@v1
 
