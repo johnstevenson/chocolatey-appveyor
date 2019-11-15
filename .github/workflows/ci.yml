@@ -6,7 +6,7 @@ jobs:
   tests:
     runs-on: windows-latest
     env:
-      COMPOSER_BINARY: C:\tools\composer
+      COMPOSER_BINARY: C:\tools\composer\composer.bat
     steps:
 
       - name: Checkout
@@ -27,4 +27,4 @@ jobs:
         run: php -v
 
       - name: Check Composer version
-        run: $COMPOSER_BINARY --version
+        run: .$COMPOSER_BINARY --version
