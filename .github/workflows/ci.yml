@@ -11,11 +11,10 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Install Composer
-        run: cinst composer -i -y --ia "/DEV=C:\tools\composer"
-        shell: cmd
+        run: cinst composer -i -y --% --ia /DEV=C:\tools\composer
 
       - name: Update environment
-        run: Install-ChocolateyPath "C:\tools\composer" -PathType Machine
+        run: refreshenv
 
       - name: Check PHP version
         run: php -v
