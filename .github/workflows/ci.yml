@@ -4,9 +4,11 @@ on: [push]
 
 jobs:
   tests:
-
     runs-on: windows-latest
     steps:
+      env:
+        COMPOSER_BINARY: C:\tools\composer
+
       - name: Checkout
         uses: actions/checkout@v1
 
@@ -26,4 +28,3 @@ jobs:
 
       - name: Check Composer version
         run: $COMPOSER_BINARY --version
-
