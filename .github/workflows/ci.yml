@@ -13,19 +13,17 @@ jobs:
       - name: Install Composer
         run: cinst composer -i -y --% --ia /DEV=C:\tools\composer
 
-      - name: Check environment 1
-        run: echo $env:Path
-
       - name: Update environment
         run: refreshenv
 
       - name: Check environment 2
-        run: echo $env:Path
+        run: |
+          refreshenv
+          echo $env:Path
 
       - name: Check PHP version
         run: php -v
 
       - name: Check Composer version
-        run: composer --version
-        shell: cmd
+        run: $COMPOSER_BINARY --version
 
