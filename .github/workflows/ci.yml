@@ -14,6 +14,9 @@ jobs:
         run: cinst composer -i -y --ia "/DEV=C:\tools\composer"
         shell: cmd
 
+      - name: Update environment
+        run: refreshenv
+
       - name: Check PHP version
         run: php -v
 
