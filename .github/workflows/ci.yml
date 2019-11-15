@@ -27,4 +27,4 @@ jobs:
         run: php -v
 
       - name: Check Composer version
-        run: .$COMPOSER_BINARY --version
+        run: .$env:COMPOSER_BINARY --version
