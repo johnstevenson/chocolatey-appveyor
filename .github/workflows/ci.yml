@@ -15,7 +15,8 @@ jobs:
         shell: cmd
 
       - name: Update environment
-        run: refreshenv
+        run: SET PATH=C:\tools\composer;%PATH%
+        shell: cmd
 
       - name: Check PHP version
         run: php -v
