@@ -15,8 +15,7 @@ jobs:
         shell: cmd
 
       - name: Update environment
-        run: SET PATH=C:\tools\composer;%PATH%
-        shell: cmd
+        run: Install-ChocolateyPath "C:\tools\composer" -PathType Machine
 
       - name: Check PHP version
         run: php -v
