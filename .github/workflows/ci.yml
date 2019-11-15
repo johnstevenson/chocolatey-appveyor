@@ -1,0 +1,20 @@
+name: CI-Windows
+
+on: [push]
+
+jobs:
+  tests:
+
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install Composer
+        run: cinst composer -i -y --ia "/DEV=%PHPCI_COMPOSER%"
+        if: pwsh -not (Test-Path -$env:LOCALAPPDATA\Composer)
+        shell: cmd
+
+      - name: Check PHP version
+        run: php -v
+
