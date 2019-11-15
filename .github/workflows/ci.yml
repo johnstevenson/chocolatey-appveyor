@@ -21,4 +21,5 @@ jobs:
 
       - name: Check Composer version
         run: composer --version
+        shell: cmd
 
