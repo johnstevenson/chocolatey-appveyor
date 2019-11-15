@@ -11,10 +11,12 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Install Composer
-        run: cinst composer -i -y --ia "/DEV=%PHPCI_COMPOSER%"
-        if: pwsh -not (Test-Path -$env:LOCALAPPDATA\Composer)
+        run: cinst composer -i -y --ia "/DEV=C:\tools\composer"
         shell: cmd
 
       - name: Check PHP version
         run: php -v
+
+      - name: Check Composer version
+        run: composer --version
 
