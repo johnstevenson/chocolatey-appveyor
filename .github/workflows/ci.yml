@@ -19,7 +19,7 @@ jobs:
       - name: Check PHP Version
         run: php -v
       - name: Check PHP location
-        run: echo '$env:PHPROOT'   
+        run: echo $env:PHPROOT
       #- name: Check Composer Version
       #  run: composer -V
       - name: Check PHP Extensions
