@@ -10,15 +10,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@master
-        with:
-          php-version: '7.3'
-          extension-csv: mbstring, openssl, curl
+      #- name: Setup PHP
+      #  uses: shivammathur/setup-php@master
+      #  with:
+      #    php-version: '7.3'
+      #    extension-csv: mbstring, openssl, curl
 
       - name: Check PHP Version
         run: php -v
-      - name: Check Composer Version
-        run: composer -V
-      - name: Check PHP Extensions
-        run: php -m
+      #- name: Check Composer Version
+      #  run: composer -V
+      #- name: Check PHP Extensions
+      #  run: php -m
