@@ -20,5 +20,5 @@ jobs:
         run: php -v
       #- name: Check Composer Version
       #  run: composer -V
-      #- name: Check PHP Extensions
-      #  run: php -m
+      - name: Check PHP Extensions
+        run: php -m
