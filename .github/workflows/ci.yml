@@ -15,8 +15,8 @@ jobs:
       #  with:
       #    php-version: '7.3'
       #    extension-csv: mbstring, openssl, curl
-      - name: Chech cache
-        run: echo $env:ACTIONS_RUN_URL
+      #- name: Chech cache
+      #  run: echo $env:ACTIONS_RUN_URL
         
       - name: Check PHP Version
         run: php -v
